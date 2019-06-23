@@ -1,0 +1,9 @@
+\section{Workload Characterization Tool}\label{section3}
+
+%The rapid development of distributed systems has led to the proliferation of massive distributed applications, covering a wide range of domains, from search engine, social networks to e-commerce.
+A comprehensive benchmark suite should cover a broad spectrum of representative
+applications of different types, as well as state-of-the-art software stacks.
+%On the other hand, most of the emerging workloads are executed in a distributed manner.
+%The distributed workloads, no matter traditional HPC workloads or stat-of-art data center workloads, can run on large-scale clusters, whose scales range from several nodes to thousands of nodes.
+%The large scale of clusters together with
+However, the broad spectrum of representative applications is multiplied by different software stack implementations, which bring cognitive difficulty of workload characterization and benchmarking costs.

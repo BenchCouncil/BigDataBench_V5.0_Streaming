@@ -1,0 +1,202 @@
+\section{Background}
+%\subsection{BigDataBench}
+BigDataBench is an open-source comprehensive big data benchmark suite. Since the first release in June 2013, more than 20 research groups and industry partners worldwide have published papers using BigDataBench. The current version BigDataBench-3.0 includes 77 workloads covering four types of applications (cloud OLTP, OLAP, interactive analytics, offline analytics) and three popular internet scenarios (search engine, social network, e-commerce).
+These workloads cover both basic operations and state-of-art algorithms, and each operation/algorithm has multiple implementations built upon mainstream software stacks (Hadoop and Spark).
+In short, BigDataBench aims at providing comprehensive workloads in order to meet the needs of benchmark users from different research fields, for example, architecture field, system field and networking field.
+%Since the first release in June 2013, more than 20 research groups and industry partners worldwide have published papers using BigDataBench.
+In addition, there are seven data sets for big data workloads, and these data sets have different types and sources. Furthermore, the original data sets can be scaled by the BDGS provided by BigDataBench. The more details can be obtained from [1].
+
+
+%\subsection{WCRT}
+%WCRT is a comprehensive workload characterization tool, which can subset the whole workload set by removing redundant ones to facilitate workload characterization and other architecture research. It can also collect, analyze, and visualize a large number of performance metrics.
+%WCRT consists of two main modules: profilers and a performance data analyzer. On each  node, a \emph{profiler} is deployed to characterize workloads running on it. The profiler collects performance metrics specified by users once a workload begins to run, and transfers the collected data to the performance data analyzer when the workload completes. The analyzer is deployed on a dedicated node that does not run other workloads. After collecting the performance data from all profilers, the analyzer processes them using statistical and visual functions. The statistical functions are used to normalize performance data and perform principle component analysis. The details also are available from (deleted for double blind).
+
+
+\section{Workload Characterization Tool}\label{section3}
+
+%The rapid development of distributed systems has led to the proliferation of massive distributed applications, covering a wide range of domains, from search engine, social networks to e-commerce.
+A comprehensive benchmark suite should cover a broad spectrum of representative
+applications of different types, as well as state-of-the-art software stacks.
+%On the other hand, most of the emerging workloads are executed in a distributed manner.
+%The distributed workloads, no matter traditional HPC workloads or stat-of-art data center workloads, can run on large-scale clusters, whose scales range from several nodes to thousands of nodes.
+%The large scale of clusters together with
+However, the broad spectrum of representative applications is multiplied by different software stack implementations, which bring cognitive difficulty of workload characterization and benchmarking costs.
+%for the architecture community,  that usually evaluates new design using simulators.
+%makes it expensive to organize experiments and get valuable insights from experiments, especially for architectural researches that usually evaluate new design using simulators.
+
+In order to reduce complexity and costs of workload characterization analysis, we develop a comprehensive workload characterization tool, which can subset the whole workload set through removing redundant ones. In addition, this tool also can collect, analyze, and visualize a large number of performance metrics.
+%ranging from micro-architecture level metrics e.g. the number of cache miss per thousand instructions, to operating system level metrics e.g. the number of context switches per second.
+%In order to get deeper insight, in our tool we also integrate some important statistical methods in workloads characterization inspired by previous research ~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}.
+%We will open source our tool, so that other researchers can use it to get valuable information in an acceptable time.
+
+
+Figure~\ref{tool} shows the architecture of the workload characterization tool. The tool mainly consists of two parts, a profiler and a performance data analyzer. (1)The \emph{profiler} is deployed on each node in the cluster, which runs the workloads we want to characterize. It collects performance data specified by users when the workload begins to run, and stores the profile data into local disk. After a workload is finished, the profiled data will transfer to the performance data analyzer through network. Specifically, We use Python scripts to drive Perf, which can access hardware Performance Counter Unit (PMU) and the \emph{proc} file system in Linux for getting Operating System (OS) level information. We also provide an extended interface which users can use to collect other data. (2)The \emph{performance data analyzer} is deployed on an exclusive node that does not run other workloads. The performance data analyzer will collect the performance data from all profilers and then process those data with different modules. First, the collector module in performance data analyzer will collect all the data from each profiler. Then the collector will store those raw data into the database. Our tool will normalize those raw data according to different definitions of metrics and automatically calculates the metrics. After that, the performance data analyzer will produce two kinds of outputs: workload subset and performance data visualization.
+
+\begin{figure}[tbp]
+\centering
+%\epsfig{file=tool_arch.eps,scale=0.6}
+\includegraphics[scale=0.6]{pic/tool_arch.eps}
+\caption{The architecture of the workload characterization tool}
+\label{tool}
+\end{figure}
+
+Then we will introduce how our tool produces those two kinds of outputs. (1)\emph{Workload Subset}: Before subsetting, removing correlation is needed, because the collected metrics may be correlated and the correlated data can skew analysis. We use Principle Component Analysis (PCA) to remove such correlated data and use Kaiser's Criterion to choose the number of principle components (PCs). After eliminating the correlation, we use K-means clustering algorithm to group the whole set of workloads into K similarly behaving application clusters, and use the Bayesian Information Criterion (BIC) to choose the proper K value. Here, the BIC is a measure of the 'goodness of fit' of the clustering. The larger the BIC score, the higher the probability that the clustering is a good fit to the performance data, so our tool will determine the K value that yields the highest BIC score. And then, users can choose a representative workload from these cluster. (2)\emph{Performance Data Visualization}: Our tool provide the figure plotter to plot different kinds of graphes and provide the function to show the similarity among workloads. For example, histogram, which facilitates users to compare the performance metrics among different workloads; dendrogram, illustrates the similarity among workloads when using hierarchical clustering.
+
+At last, The tool is implemented in Python. It %has integrated several statistical functions and visual functions. The statistical functions are used to normalize performance data, and perform principle component analysis. The visual functions are used to plot different kinds of graphs. In our implementation, we
+uses \emph{matplotlib} as our graphic library and \emph{numpy} and \emph{scipy} as our statistical libraries.
+%The following section will give the details of out tool.
+%the performance data they collected to downsizing analyzer over network.
+
+%\subsection{Profiler}
+%The profiler can collect multi-level performance metrics.
+%In our implementation, this function relies on the existing profiling tools in Linux such as Perf.
+%We use Python scripts to drive Perf, a profiling tool for Linux 2.6+ based systems, to access hardware Performance Counter Unit (PMU).
+%At the same time we also access the \emph{proc} file system in Linux in order to get Operating System (OS) level information.
+%With those modules, the profiler can get both micro-architecture and OS level metrics, e.g. the pipeline execution stalls, memory bandwidth, CPU utilization and etc.
+%We also provide an extended interface which users can use to collect other data.
+%We do not use this interface in this paper, also for the space limitation, we do not describe the details, which can be found from our web site (\emph{\textbf{deleted for double-blind review}}).
+
+%\subsection{Performance Data Analyzer}
+%And then we will collect the performance data. This is the last step that we need to do manually.
+%After running each workload, the collector module in performance data analyzer will collect all the data from each profiler.
+%Then the collector will store those raw data into the database.
+%Those raw data will be normalized by instructions, cycles, second and etc, according to different definitions of metrics. That is to say, the tool calculates the metrics automatically, e.g calculating IPC by diving total instructions by total cycles, calculating L1 data cache misses per thousand instructions by diving total L1 data cache misses by the number of thousand instructions executed.
+%This is because the raw data is meaningless for most of the time. Such as the total number of L1 instruction cache misses does not give much information for different workloads have different running time.
+%The meaningful metric should be L1 instruction cache missed per thousand instruct. %So the raw data should be
+%because different workloads have different running time and most of raw data are skewed by running time.
+%So the raw data should be normalized by time or cycles according to the definition of metrics, such as cache misses per thousand instructions, context switches per second.
+
+%After that, the performance data analyzer will produce two kinds of outputs --- workload subset and performance data visualization.%, whose numbers are labeled in figure \ref{tool}.
+% In the following sections, we will introduce how our tool  produces those kinds of outputs.
+
+%\subsubsection{Workload Subsetting} \label{remove-correlation}
+%The broad spectrum of representative applications make it prohibitively expensive to perform evaluation with all workloads especially for simulator based research. Inspired by previous research~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}, this tool can produce a subset of the whole set of workloads according to the performance data profiler collected. The procedure is showed in Figure~\ref{tool}.
+%Removing correlation is needed before subsetting.
+%Because the collected metrics may be correlated.
+%The correlated data can skew analysis---many correlated metrics will overemphasize a particular property's importance. So we eliminate correlated data before subsetting.Principle Component Analysis (PCA) is used for removing such correlated data, which is a statistical procedure that uses an orthogonal transformation to convert a set of possibly correlated  data of into a set of values of linearly uncorrelated variables called principal components. Our tool uses Kaiser's Criterion to choose the number of principle components (PCs).  That is, only the top few PCs, which have eigenvalues greater than or equal to one, are kept. With those PCs, each workload can be represented by a vector which is ensured to be uncorrelated while capturing most of the original information.
+
+%After eliminating the correlation, we use K-means clustering algorithm to group the whole set of workloads into K similarly behaving application clusters and then users can choose a representative workload from each cluster.
+%We integrate K-means clustering algorithm into our tool.
+%It partitions the workloads into K clusters. In order to cluster all the workloads into reasonable subclasses, our tool use the Bayesian Information Criterion (BIC) to choose the proper K value.%, in case that users do not have idea about the K value. The BIC is a measure of the 'goodness of fit' of the clustering. The larger the BIC scores, the higher the probability that the clustering is a good fit to the performance data. Our tool will determine the K value that yields the highest BIC score.
+%After the clustering, the user can choose one representative workload from each cluster.
+
+
+
+%\subsubsection{Performance Data Visualization}
+%After all workloads are finished, if the user only want to compare the performance data collected by profilers, then the figure plotter can be used to plot different kinds of graphes, such as histogram. The histogram facilitates users to compare the performance metrics among different workloads.
+
+%Our tool also provides the function to show the similarity among workloads. The tool employs hierarchical clustering, which is one common way to do similarity analysis, for it can quantitatively show the similarity among workloads via a dendrogram.
+%The dendrogram illustrates how each cluster is composed by drawing a U-shaped link between a non-singleton cluster and its children. The length of the top of the U-link is the distance between its children. The shorter the distance, the more similar between the children. Due to the space limitation, we do not provide details.
+
+
+%Further,  use the single linkage distance to create the dendrogram.
+\section{Representative big data Workloads}
+
+%BigDataBench is an open-source comprehensive big data benchmark suites. There are 77 workloads in the latest version of BigDataBench --BigDataBench 3.0. Considering the diversity and representativeness, the workloads in BigDataBench cover different types of applications: cloud OLTP, OLAP and interactive analytics, and offline analytics. Moreover, each operation or algorithm has various implementations using different software stacks. In addition, these workloads cover both basic operations and state-of-art algorithms in three popular Internet scenarios: search engine, social network, and e-commerce.
+
+%Since its release from June 2013, more than 20 research groups worldwide  have  published papers using BigDataBench. In short, the workloads in BigDataBench are manifold and comprehensive, so that they can meet the needs of users from different research fields, such as architecture, system, and networking. So in this section, for the comprehensiveness  of BigDataBench, we reduce it to produce representative big data workloads, however our methodology and tool can also apply to other big data benchmarks.
+
+To reduce workload characterization difficulty and benchmarking cost of BigdataBench, we use the tool mentioned in Section \ref{section3} to reduce
+the number of workloads from a perspective of  micro-architecture. As the input for the tool, we choose 45 micro architecture level metrics (the  specific metrics are show in \cite{jia_bigDataBench_subset}), covering the characteristics of \emph{Instruction Mix}, \emph{Cache Behavior}, \emph{Translation Look-aside Buffer (TLB) Behavior}, \emph{Branch Execution}, \emph{Pipeline Behavior}, \emph{Offcore Requests} and \emph{Snoop Responses}, \emph{Parallelism}, and \emph{Operation Intensity}.
+
+When using the tool, we normalize these metric values to a Gaussian distribution and use Principle Component Analysis (PCA) to reduce the dimensions. Running the tool, we reduce 45 metrics to 9 principle components, the sum of whose eigenvalues accounts for 89.3 percentage of the sum of all eigenvalues. And then we use K-Means to cluster the 77 workloads, and there are 17 clusters in the final results.
+
+Since the workloads in the same cluster are similar, we could choose one to represent the workloads in the cluster. There are two methods for choosing the representative workload from each cluster: 1) select the workload that is as close as possible to the center of the cluster it belongs to, and 2) select the extreme workload situated at the boundary of each cluster. We select the workload situated at the boundary of each cluster as the
+representative workload. The rationale behind the approach would be that the behavior of the workloads in the middle of a cluster can be extracted from the behavior of the boundary.
+
+The final 17 workloads reduced for architecture researchers are listed in Table~\ref{reduing workloads}.  In Table~\ref{reduing workloads}, we give a simple description of each representative big data workload, and describe each workload from the perspective of system behavior, data behaviors and application category.
+\subsubsection{\textbf{System Behaviors}}
+
+We choose CPU Usages, DISK IO behaviors and IO Bandwidth to analyze
+the system behaviors of big data workloads. First, the CPU usages are
+described by CPU utilization and IO Wait ratio. CPU utilization is defined as the percentage of time that the CPU executing at system or user level, while I/O Wait ratio is defined as the percentage of time that the CPU waiting for outstanding disk I/O requests. Second, DISK I/O performance is a key metric of big data workloads. We investigate the DISK I/O behavior, which are described by the weighted Disk I/O time ratio. Weighted Disk I/O time is defined as weighted number of milliseconds spent doing I/Os since the last update, and the average weighted Disk I/O time ratio is the weighted Disk I/O time divided by the running time of the workload. Third, we choose the Disk I/O Bandwidth, Network I/O Bandwidth and Memory Bandwidth to describe IO Bandwidth, which can reflect the I/O throughput requirements of big data workloads.
+
+In order to better understand system behaviors, we roughly classify the workloads into three categories: (1)\emph{CPU-Intensive workloads},
+which have high CPU utilization, low average weighted Disk I/O time ratio or I/O Bandwidth; for example, in our experiments, if the workload's CPU utilization is larger than 85\%, we consider it CPU-Intensive. (2)\emph{I/O-Intensive workloads}, which have high average weighted Disk I/O time ratio or I/O Bandwidth but low CPU utilization; such as, the workload's average weighted Disk I/O time ratio larger than 10 or the I/O Wait ratio larger than 20\%, and the CPU utilization less than 60\%, we consider it  I/O-Intensive; (3)\emph{Hybrid workloads}, whose behaviors are between CPU-Intensive workloads and IO-Intensive workloads. The three system behaviours categories of our 17 workloads are shown in Table \ref{reduing workloads}.
+
+\subsubsection{\textbf{Data Behaviors}}
+We choose data schema and data processing behaviors£¬which can be used to characterize the data behaviors. For data schema, we will describe the data structure and semantic information of each workload. For data processing behaviors, we will describe the Data Input ratio, Data Output ratio and Intermediate Data ratio to describe. For example, when Data Output ratio to Data Input ratio is larger than or equal to 0.9 and less than 1.1, we consider \emph{Output=Input}; when Data Output ratio to Data Input ratio is larger than or equal to 0.01 and less than 0.9, we consider \emph{Output\textless Input}; when  Data Output ratio to Data Input ratio is less than 0.01, we consider \emph{Output\textless\textless Input}; when Data Output ratio to  Data Input ratio is greater than or equal to 1.1, we consider \emph{Output\textgreater Input}. The rule is inspired by Luo et al.~\cite{luo2012cloudrank}.
+
+\subsubsection{\textbf{Application category}}
+We consider three application categories: \emph{data analysis} workloads, \emph{service} workloads and \emph{interactive analysis} workloads.
+
+
+%\section{Representative big data Workloads}\label{Workloads}
+%To reduce the cognitive difficulty of workload characterization and benchmarking cost, we use WCRT to reduce the number of workloads in benchmarking from the perspective of micro-architecture. As the input for the WCRT tool, we choose 45 micro architecture level metrics, covering the characteristics of instruction mix, cache behavior, translation look-aside buffer (TLB) behavior, branch execution, pipeline behavior, off-core requests and snoop responses, parallelism, and operation intensity. Due to limited space, we give the details of these 45 metrics on our web page which is available from (deleted for double blind). Then we normalize these metric values to a Gaussian distribution and use Principle Component Analysis (PCA) to reduce the dimensions. Finally we use K-Means to cluster the 77 workloads, and there are 17 clusters in the final results.
+%The details are also available from (deleted for double blind). In this section, we introduced the details of 17 representative workloads.
+
+%\subsection{Original data sets of representative workloads}
+%There are seven data sets for representative workloads. As shown in Table \ref{data_sets}, these data have different types and sources and application domains. The original data set can be scaled by the BDGS provided by BigDataBench. The more details can be obtained from ~\cite{BigDataBenchhomepage}.
+
+%\begin{table}[H]
+%\caption{The summary of data sets and data generation tools.}\label{data_sets} \center \begin{tabular}{|p{0.2in}|p{1.0in}|p{1.0in}|p{0.5in}|}
+%\hline
+%No. &data sets & data set description &scalable data set\\ \hline
+%1 & Wikipedia Entries & 4,300,000 English articles& Text Generator of BDGS\\ \hline
+%2 & Amazon Movie Reviews & 7,911,684 reviews & Text Generator of BDGS\\ \hline
+%3 &Google Web Graph & 875713 nodes, 5105039 edges & Graph Generator of BDGS\\ \hline
+%4 &Facebook Social Network & 4039 nodes, 88234 edges &Graph Generator of BDGS\\ \hline
+%5 &E-commerce Transaction Data & Table 1: 4 columns, 38658 rows. Table
+%2: 6 columns, 242735 rows &Table Generator of BDGS\\ \hline
+%6 & ProfSearch Person Resum\'{e}s & 278956 resum\'{e}s&Table Generator of BDGS\\ \hline
+%7 & TPC-DS WebTable Data & 26 tables&TPC DSGen\\ \hline
+%\end{tabular} \end{table}
+
+
+
+
+\begin{table*}
+\center
+\caption{Details of the representative big data workloads.} \newsavebox{\tablebox} \begin{lrbox}{\tablebox}
+\label{reduing workloads}
+\begin{tabular}{|c|p{60pt}|p{140pt}|p{90pt}|p{45pt}|p{50pt}|p{40pt}|}
+\hline
+\bf ID & \bf The name of representative big data workload (Abbr.) & \bf Description of the representative
+workload & \bf Data Description & \bf category & \bf Data Processing Behaviors & \bf System behaviors\\ \hline
+
+1 & HBase-Read (H-Read) (10)\footnotemark[1] & Basic operation of reading in HBase which is a popular non-relational, distributed database. & ProfSearch data set, each record is 1128 bytes K-V text file& service & Output=Input and no intermediate & IO-Intensive\\ \hline
+
+2 & Hive-Difference (H-Difference) (9)\footnotemark[1]& Hive implementation of set difference, one of the five basic operator from relational algebra. & E-commerce Transaction data set, each record is 52 bytes K-V text file& interactive analysis & Output\textless Input and Intermediate\textless Input  &IO-Intensive\\ \hline
+
+3 & Impala-SelectQuery (I-SelectQuery) (9)\footnotemark[1]& Impala implementation of select query to filter data, filter is one of the five basic operator from relational algebra. & E-commerce Transaction data set, each record is 52 bytes K-V text file  & interactive analysis & Output\textless Input and no Intermediate\textless\textless Input&IO-Intensive \\ \hline
+
+4 & Hive-TPC-DS-Q3 (H-TPC-DS-query3) (9)\footnotemark[1]& Hive implementation of query 3 of TPC-DS, a popular decision support benchmark proposed by Transection Processing Performance Council, complex relational algebra. & TPC-DS Web data set, each record is 14 KB K-V text file & interactive analysis & Output=Input and no Intermediate &Hybrid\\ \hline
+
+
+5 & Spark-WordCount (S-WordCount) (8)\footnotemark[1]& Spark implementation of word counting which counts the number of each word in the input
+file. Counting is a a fundamental operation for big data statistics analytics. & Wikipedia data set, each record is 64KB K-V text file& data analysis & Output\textless\textless Input and Intermediate\textless Input& IO-Intensive\\ \hline
+
+
+6 & Impala-OrderBy (I-OrderBy) (7)\footnotemark[1]& Impala implementation of sorting, a fundamental operation from relational algebra and extensively used in various scene. & E-commerce Transaction data set, each record is 52 bytes K-V text file & interactive analysis & Output=Input and Intermediate=Input&Hybrid\\ \hline
+
+
+7 & Hadoop-Grep (H-Grep) (7)\footnotemark[1]& Searching plain text file for lines that match a regular expression by Hadoop MapReduce. Searching is another fundamental operation widely used. & Wikipedia data set, each record is 64KB K-V text file & data analysis &Output\textless\textless Input and Intermediate\textless\textless Input &CPU-Intensive\\ \hline
+
+8 & Shark-TPC-DS-Q10 (S-TPC-DS-query10) (4)\footnotemark[1]& Shark implementation of query 10 of TPC-DS, complex relational algebra. & TPC-DS Web data set, each record is 14 KB K-V text file & interactive analysis &Output\textless\textless Input and no Intermediate &Hybrid\\ \hline
+
+
+9 & Shark-Project (S-Project) (4)\footnotemark[1]& Shark implementation of project, one of the five basic operator from relational algebra. & E-commerce Transaction data set, each record is 52 bytes K-V text file & interactive analysis & Output\textless Input and no Intermediate &IO-Intensive\\ \hline
+
+10 & Shark-OrderBy (S-OrderBy) (3)\footnotemark[1]& Shark implementation of sorting. &E-commerce Transaction data set, each record is 52 bytes K-V text file & interactive analysis &Output=Input and Intermediate=Input &IO-Intensive \\ \hline
+
+11 & Spark-Kmeans (S-Kmeans) (1)\footnotemark[1]& Spark implementation of k-means which is a popular clustering algorithm in Discrete mathematics for partitioning n observations into k clusters .  &Facebook data set, each record is 94 bytes K-V text file & data analysis & Output=Input and Intermediate=Input&CPU-Intensive\\ \hline
+
+12 & Shark-TPC-DS-Q8 (S-TPC-DS-query8) (1)\footnotemark[1]& Shark implementation of query 8 of TPC-DS.&TPC-DS Web data set, each record is 14 KB K-V text file & interactive analysis &Output\textless\textless Input and no Intermediate &Hybrid\\ \hline
+
+13 & Spark-PageRank (S-PageRank) (1)\footnotemark[1]& Spark implementation of PageRank, which is a graph computing algorithm used by Google to score the importance of the
+web page by counting the number and quality of links to the page.  &Google data set, each record is 6KB K-V text file & data analysis & Output\textgreater Input and Intermediate\textgreater Input&CPU-Intensive\\ \hline
+
+14 & Spark-Grep (S-Grep) (1)\footnotemark[1]& Spark implementation of Grep.  &Wikipedia data set, each record is 64KB K-V text file&data analysis &Output\textless\textless Input and Intermediate\textless\textless Input &IO-Intensive \\ \hline
+
+15 & Hadoop-WordCount (H-WordCount) (1)\footnotemark[1]& Hadoop implementation of WordCount.  &Wikipedia data set, each record is 64KB K-V text file & data analysis &Output\textless\textless Input and Intermediate\textless\textless Input &CPU-Intensive\\ \hline
+
+16 & Hadoop-NaiveBayes (H-NaiveBayes) (1)\footnotemark[1]& Hadoop implementation of naive bayes which is a simple but widely used probabilistic classifier in statistical calculation.  &Amazon data set, each record is 52KB K-V text file & data analysis &Output\textless\textless Input and Intermediate\textless\textless Input &CPU-Intensive\\ \hline
+
+17 & Spark-Sort (S-Sort) (1)\footnotemark[1]& Spark implementation of sorting. &Wikipedia data set, each record is 64KB K-V text file & data analysis & Output=Input and Intermediate=Input&Hybrid\\ \hline
+
+\end{tabular}
+\end{lrbox}
+\scalebox{1.0}{\usebox{\tablebox}}
+\footnotemark[1]{The number of workloads that the selected workloads can represent are given in parentheses.}
+\end{table*}
+

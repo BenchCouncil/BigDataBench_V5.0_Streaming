@@ -1,0 +1,19 @@
+%WCRT consists of two main modules: profilers and a performance data analyzer. On each  node, a \emph{profiler} is deployed to characterize workloads running on it. The profiler collects performance metrics specified by users once a workload begins to run, and transfers the collected data to the performance data analyzer when the workload completes. The analyzer is deployed on a dedicated node that does not run other workloads. After collecting the performance data from all profilers, the analyzer processes them using statistical and visual functions. The statistical functions are used to normalize performance data and perform principle component analysis. The details also are available from (deleted for double blind).
+
+
+\section{Workload Characterization Tool}\label{section3}
+
+%The rapid development of distributed systems has led to the proliferation of massive distributed applications, covering a wide range of domains, from search engine, social networks to e-commerce.
+A comprehensive benchmark suite should cover a broad spectrum of representative
+applications of different types, as well as state-of-the-art software stacks.
+%On the other hand, most of the emerging workloads are executed in a distributed manner.
+%The distributed workloads, no matter traditional HPC workloads or stat-of-art data center workloads, can run on large-scale clusters, whose scales range from several nodes to thousands of nodes.
+%The large scale of clusters together with
+However, the broad spectrum of representative applications is multiplied by different software stack implementations, which bring cognitive difficulty of workload characterization and benchmarking costs.
+%for the architecture community,  that usually evaluates new design using simulators.
+%makes it expensive to organize experiments and get valuable insights from experiments, especially for architectural researches that usually evaluate new design using simulators.
+
+In order to reduce complexity and costs of workload characterization analysis, we develop a comprehensive workload characterization tool, which can subset the whole workload set through removing redundant ones. In addition, this tool also can collect, analyze, and visualize a large number of performance metrics.
+%ranging from micro-architecture level metrics e.g. the number of cache miss per thousand instructions, to operating system level metrics e.g. the number of context switches per second.
+%In order to get deeper insight, in our tool we also integrate some important statistical methods in workloads characterization inspired by previous research ~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}.
+%We will open source our tool, so that other researchers can use it to get valuable information in an acceptable time.

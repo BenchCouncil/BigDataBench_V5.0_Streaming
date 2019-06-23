@@ -1,0 +1,12 @@
+%because different workloads have different running time and most of raw data are skewed by running time.
+%So the raw data should be normalized by time or cycles according to the definition of metrics, such as cache misses per thousand instructions, context switches per second.
+
+%After that, the performance data analyzer will produce two kinds of outputs --- workload subset and performance data visualization.%, whose numbers are labeled in figure \ref{tool}.
+% In the following sections, we will introduce how our tool  produces those kinds of outputs.
+
+%\subsubsection{Workload Subsetting} \label{remove-correlation}
+%The broad spectrum of representative applications make it prohibitively expensive to perform evaluation with all workloads especially for simulator based research. Inspired by previous research~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}, this tool can produce a subset of the whole set of workloads according to the performance data profiler collected. The procedure is showed in Figure~\ref{tool}.
+%Removing correlation is needed before subsetting.
+%Because the collected metrics may be correlated.
+%The correlated data can skew analysis---many correlated metrics will overemphasize a particular property's importance. So we eliminate correlated data before subsetting.Principle Component Analysis (PCA) is used for removing such correlated data, which is a statistical procedure that uses an orthogonal transformation to convert a set of possibly correlated  data of into a set of values of linearly uncorrelated variables called principal components. Our tool uses Kaiser's Criterion to choose the number of principle components (PCs).  That is, only the top few PCs, which have eigenvalues greater than or equal to one, are kept. With those PCs, each workload can be represented by a vector which is ensured to be uncorrelated while capturing most of the original information.
+

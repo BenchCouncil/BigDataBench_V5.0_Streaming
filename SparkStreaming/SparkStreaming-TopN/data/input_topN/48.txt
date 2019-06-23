@@ -1,0 +1,9 @@
+
+
+%Further,  use the single linkage distance to create the dendrogram.
+\section{Representative big data Workloads}
+
+%BigDataBench is an open-source comprehensive big data benchmark suites. There are 77 workloads in the latest version of BigDataBench --BigDataBench 3.0. Considering the diversity and representativeness, the workloads in BigDataBench cover different types of applications: cloud OLTP, OLAP and interactive analytics, and offline analytics. Moreover, each operation or algorithm has various implementations using different software stacks. In addition, these workloads cover both basic operations and state-of-art algorithms in three popular Internet scenarios: search engine, social network, and e-commerce.
+
+%Since its release from June 2013, more than 20 research groups worldwide  have  published papers using BigDataBench. In short, the workloads in BigDataBench are manifold and comprehensive, so that they can meet the needs of users from different research fields, such as architecture, system, and networking. So in this section, for the comprehensiveness  of BigDataBench, we reduce it to produce representative big data workloads, however our methodology and tool can also apply to other big data benchmarks.
+

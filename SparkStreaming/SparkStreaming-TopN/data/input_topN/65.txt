@@ -1,0 +1,4 @@
+
+
+%\subsection{WCRT}
+%WCRT is a comprehensive workload characterization tool, which can subset the whole workload set by removing redundant ones to facilitate workload characterization and other architecture research. It can also collect, analyze, and visualize a large number of performance metrics.

@@ -1,0 +1,6 @@
+%After that, the performance data analyzer will produce two kinds of outputs --- workload subset and performance data visualization.%, whose numbers are labeled in figure \ref{tool}.
+% In the following sections, we will introduce how our tool  produces those kinds of outputs.
+
+%\subsubsection{Workload Subsetting} \label{remove-correlation}
+%The broad spectrum of representative applications make it prohibitively expensive to perform evaluation with all workloads especially for simulator based research. Inspired by previous research~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}, this tool can produce a subset of the whole set of workloads according to the performance data profiler collected. The procedure is showed in Figure~\ref{tool}.
+%Removing correlation is needed before subsetting.

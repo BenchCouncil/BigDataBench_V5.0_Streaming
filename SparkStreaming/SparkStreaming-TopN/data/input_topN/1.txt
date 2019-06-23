@@ -1,0 +1,5 @@
+
+In order to reduce complexity and costs of workload characterization analysis, we develop a comprehensive workload characterization tool, which can subset the whole workload set through removing redundant ones. In addition, this tool also can collect, analyze, and visualize a large number of performance metrics.
+%ranging from micro-architecture level metrics e.g. the number of cache miss per thousand instructions, to operating system level metrics e.g. the number of context switches per second.
+%In order to get deeper insight, in our tool we also integrate some important statistical methods in workloads characterization inspired by previous research ~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}.
+%We will open source our tool, so that other researchers can use it to get valuable information in an acceptable time.

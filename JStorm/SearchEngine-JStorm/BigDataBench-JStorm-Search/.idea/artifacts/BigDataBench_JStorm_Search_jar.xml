@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BigDataBench-JStorm-Search:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BigDataBench_JStorm_Search_jar</output-path>
+    <root id="archive" name="BigDataBench-JStorm-Search.jar">
+      <element id="module-output" name="BigDataBench-JStorm-Search" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/redis/jedis-2.6.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lucene/lucene-queries-4.10.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lucene/lucene-analyzers-common-4.10.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lucene/lucene-queryparser-4.10.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/redis/commons-pool2-2.4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lucene/lucene-analyzers-smartcn-4.10.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/lucene/lucene-core-4.10.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,11 @@
+%The profiler can collect multi-level performance metrics.
+%In our implementation, this function relies on the existing profiling tools in Linux such as Perf.
+%We use Python scripts to drive Perf, a profiling tool for Linux 2.6+ based systems, to access hardware Performance Counter Unit (PMU).
+%At the same time we also access the \emph{proc} file system in Linux in order to get Operating System (OS) level information.
+%With those modules, the profiler can get both micro-architecture and OS level metrics, e.g. the pipeline execution stalls, memory bandwidth, CPU utilization and etc.
+%We also provide an extended interface which users can use to collect other data.
+%We do not use this interface in this paper, also for the space limitation, we do not describe the details, which can be found from our web site (\emph{\textbf{deleted for double-blind review}}).
+
+%\subsection{Performance Data Analyzer}
+%And then we will collect the performance data. This is the last step that we need to do manually.
+%After running each workload, the collector module in performance data analyzer will collect all the data from each profiler.

@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KMeansDataTestGenerator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KMeansDataTestGenerator_jar</output-path>
+    <root id="archive" name="KMeansTestDataGenerator.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="KMeansDataGenerator" />
+    </root>
+  </artifact>
+</component>

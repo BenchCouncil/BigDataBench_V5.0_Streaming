@@ -1,0 +1,2 @@
+\caption{The architecture of the workload characterization tool}
+\label{tool}

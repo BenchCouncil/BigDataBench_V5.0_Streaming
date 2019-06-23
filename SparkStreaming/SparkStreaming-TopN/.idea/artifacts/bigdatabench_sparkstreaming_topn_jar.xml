@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="bigdatabench-sparkstreaming-topn:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/bigdatabench_sparkstreaming_topn_jar</output-path>
+    <root id="archive" name="bigdatabench-sparkstreaming-topn.jar">
+      <element id="module-output" name="bigdatabench-spark-topn" />
+      <element id="extracted-dir" path="$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

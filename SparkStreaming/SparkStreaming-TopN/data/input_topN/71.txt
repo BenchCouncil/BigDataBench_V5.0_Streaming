@@ -1,0 +1,4 @@
+%because different workloads have different running time and most of raw data are skewed by running time.
+%So the raw data should be normalized by time or cycles according to the definition of metrics, such as cache misses per thousand instructions, context switches per second.
+
+%After that, the performance data analyzer will produce two kinds of outputs --- workload subset and performance data visualization.%, whose numbers are labeled in figure \ref{tool}.

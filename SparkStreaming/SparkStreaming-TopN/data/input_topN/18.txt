@@ -1,0 +1,14 @@
+\begin{figure}[tbp]
+\centering
+%\epsfig{file=tool_arch.eps,scale=0.6}
+\includegraphics[scale=0.6]{pic/tool_arch.eps}
+\caption{The architecture of the workload characterization tool}
+\label{tool}
+\end{figure}
+
+Then we will introduce how our tool produces those two kinds of outputs. (1)\emph{Workload Subset}: Before subsetting, removing correlation is needed, because the collected metrics may be correlated and the correlated data can skew analysis. We use Principle Component Analysis (PCA) to remove such correlated data and use Kaiser's Criterion to choose the number of principle components (PCs). After eliminating the correlation, we use K-means clustering algorithm to group the whole set of workloads into K similarly behaving application clusters, and use the Bayesian Information Criterion (BIC) to choose the proper K value. Here, the BIC is a measure of the 'goodness of fit' of the clustering. The larger the BIC score, the higher the probability that the clustering is a good fit to the performance data, so our tool will determine the K value that yields the highest BIC score. And then, users can choose a representative workload from these cluster. (2)\emph{Performance Data Visualization}: Our tool provide the figure plotter to plot different kinds of graphes and provide the function to show the similarity among workloads. For example, histogram, which facilitates users to compare the performance metrics among different workloads; dendrogram, illustrates the similarity among workloads when using hierarchical clustering.
+
+At last, The tool is implemented in Python. It %has integrated several statistical functions and visual functions. The statistical functions are used to normalize performance data, and perform principle component analysis. The visual functions are used to plot different kinds of graphs. In our implementation, we
+uses \emph{matplotlib} as our graphic library and \emph{numpy} and \emph{scipy} as our statistical libraries.
+%The following section will give the details of out tool.
+%the performance data they collected to downsizing analyzer over network.

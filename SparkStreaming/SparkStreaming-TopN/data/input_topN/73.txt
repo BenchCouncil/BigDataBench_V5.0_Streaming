@@ -1,0 +1,7 @@
+%After eliminating the correlation, we use K-means clustering algorithm to group the whole set of workloads into K similarly behaving application clusters and then users can choose a representative workload from each cluster.
+%We integrate K-means clustering algorithm into our tool.
+%It partitions the workloads into K clusters. In order to cluster all the workloads into reasonable subclasses, our tool use the Bayesian Information Criterion (BIC) to choose the proper K value.%, in case that users do not have idea about the K value. The BIC is a measure of the 'goodness of fit' of the clustering. The larger the BIC scores, the higher the probability that the clustering is a good fit to the performance data. Our tool will determine the K value that yields the highest BIC score.
+%After the clustering, the user can choose one representative workload from each cluster.
+
+
+

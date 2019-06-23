@@ -1,0 +1,22 @@
+
+%After eliminating the correlation, we use K-means clustering algorithm to group the whole set of workloads into K similarly behaving application clusters and then users can choose a representative workload from each cluster.
+%We integrate K-means clustering algorithm into our tool.
+%It partitions the workloads into K clusters. In order to cluster all the workloads into reasonable subclasses, our tool use the Bayesian Information Criterion (BIC) to choose the proper K value.%, in case that users do not have idea about the K value. The BIC is a measure of the 'goodness of fit' of the clustering. The larger the BIC scores, the higher the probability that the clustering is a good fit to the performance data. Our tool will determine the K value that yields the highest BIC score.
+%After the clustering, the user can choose one representative workload from each cluster.
+
+
+
+%\subsubsection{Performance Data Visualization}
+%After all workloads are finished, if the user only want to compare the performance data collected by profilers, then the figure plotter can be used to plot different kinds of graphes, such as histogram. The histogram facilitates users to compare the performance metrics among different workloads.
+
+%Our tool also provides the function to show the similarity among workloads. The tool employs hierarchical clustering, which is one common way to do similarity analysis, for it can quantitatively show the similarity among workloads via a dendrogram.
+%The dendrogram illustrates how each cluster is composed by drawing a U-shaped link between a non-singleton cluster and its children. The length of the top of the U-link is the distance between its children. The shorter the distance, the more similar between the children. Due to the space limitation, we do not provide details.
+
+
+%Further,  use the single linkage distance to create the dendrogram.
+\section{Representative big data Workloads}
+
+%BigDataBench is an open-source comprehensive big data benchmark suites. There are 77 workloads in the latest version of BigDataBench --BigDataBench 3.0. Considering the diversity and representativeness, the workloads in BigDataBench cover different types of applications: cloud OLTP, OLAP and interactive analytics, and offline analytics. Moreover, each operation or algorithm has various implementations using different software stacks. In addition, these workloads cover both basic operations and state-of-art algorithms in three popular Internet scenarios: search engine, social network, and e-commerce.
+
+%Since its release from June 2013, more than 20 research groups worldwide  have  published papers using BigDataBench. In short, the workloads in BigDataBench are manifold and comprehensive, so that they can meet the needs of users from different research fields, such as architecture, system, and networking. So in this section, for the comprehensiveness  of BigDataBench, we reduce it to produce representative big data workloads, however our methodology and tool can also apply to other big data benchmarks.
+

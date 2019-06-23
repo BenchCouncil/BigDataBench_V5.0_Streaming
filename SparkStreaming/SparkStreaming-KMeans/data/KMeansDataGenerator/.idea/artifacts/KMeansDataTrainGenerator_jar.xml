@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="KMeansDataTrainGenerator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/KMeansDataTrainGenerator_jar</output-path>
+    <root id="archive" name="KMeansTrainDataGenerator.jar">
+      <element id="module-output" name="KMeansDataGenerator" />
+    </root>
+  </artifact>
+</component>

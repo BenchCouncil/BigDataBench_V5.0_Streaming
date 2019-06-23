@@ -1,0 +1,8 @@
+
+%Our tool also provides the function to show the similarity among workloads. The tool employs hierarchical clustering, which is one common way to do similarity analysis, for it can quantitatively show the similarity among workloads via a dendrogram.
+%The dendrogram illustrates how each cluster is composed by drawing a U-shaped link between a non-singleton cluster and its children. The length of the top of the U-link is the distance between its children. The shorter the distance, the more similar between the children. Due to the space limitation, we do not provide details.
+
+
+%Further,  use the single linkage distance to create the dendrogram.
+\section{Representative big data Workloads}
+

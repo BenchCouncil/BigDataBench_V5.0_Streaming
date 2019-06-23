@@ -1,0 +1,13 @@
+In short, BigDataBench aims at providing comprehensive workloads in order to meet the needs of benchmark users from different research fields, for example, architecture field, system field and networking field.
+%Since the first release in June 2013, more than 20 research groups and industry partners worldwide have published papers using BigDataBench.
+In addition, there are seven data sets for big data workloads, and these data sets have different types and sources. Furthermore, the original data sets can be scaled by the BDGS provided by BigDataBench. The more details can be obtained from [1].
+
+
+%\subsection{WCRT}
+%WCRT is a comprehensive workload characterization tool, which can subset the whole workload set by removing redundant ones to facilitate workload characterization and other architecture research. It can also collect, analyze, and visualize a large number of performance metrics.
+%WCRT consists of two main modules: profilers and a performance data analyzer. On each  node, a \emph{profiler} is deployed to characterize workloads running on it. The profiler collects performance metrics specified by users once a workload begins to run, and transfers the collected data to the performance data analyzer when the workload completes. The analyzer is deployed on a dedicated node that does not run other workloads. After collecting the performance data from all profilers, the analyzer processes them using statistical and visual functions. The statistical functions are used to normalize performance data and perform principle component analysis. The details also are available from (deleted for double blind).
+
+
+\section{Workload Characterization Tool}\label{section3}
+
+%The rapid development of distributed systems has led to the proliferation of massive distributed applications, covering a wide range of domains, from search engine, social networks to e-commerce.

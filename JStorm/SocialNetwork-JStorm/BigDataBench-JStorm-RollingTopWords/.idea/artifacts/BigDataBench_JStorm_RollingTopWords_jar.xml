@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BigDataBench-JStorm-RollingTopWords:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BigDataBench_JStorm_RollingTopWords_jar</output-path>
+    <root id="archive" name="BigDataBench-JStorm-RollingTopWords.jar">
+      <element id="module-output" name="BigDataBench-JStorm-RollingTopWords" />
+    </root>
+  </artifact>
+</component>

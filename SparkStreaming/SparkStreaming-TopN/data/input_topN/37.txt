@@ -1,0 +1,6 @@
+%\subsubsection{Performance Data Visualization}
+%After all workloads are finished, if the user only want to compare the performance data collected by profilers, then the figure plotter can be used to plot different kinds of graphes, such as histogram. The histogram facilitates users to compare the performance metrics among different workloads.
+
+%Our tool also provides the function to show the similarity among workloads. The tool employs hierarchical clustering, which is one common way to do similarity analysis, for it can quantitatively show the similarity among workloads via a dendrogram.
+%The dendrogram illustrates how each cluster is composed by drawing a U-shaped link between a non-singleton cluster and its children. The length of the top of the U-link is the distance between its children. The shorter the distance, the more similar between the children. Due to the space limitation, we do not provide details.
+

@@ -1,0 +1,16 @@
+%At the same time we also access the \emph{proc} file system in Linux in order to get Operating System (OS) level information.
+%With those modules, the profiler can get both micro-architecture and OS level metrics, e.g. the pipeline execution stalls, memory bandwidth, CPU utilization and etc.
+%We also provide an extended interface which users can use to collect other data.
+%We do not use this interface in this paper, also for the space limitation, we do not describe the details, which can be found from our web site (\emph{\textbf{deleted for double-blind review}}).
+
+%\subsection{Performance Data Analyzer}
+%And then we will collect the performance data. This is the last step that we need to do manually.
+%After running each workload, the collector module in performance data analyzer will collect all the data from each profiler.
+%Then the collector will store those raw data into the database.
+%Those raw data will be normalized by instructions, cycles, second and etc, according to different definitions of metrics. That is to say, the tool calculates the metrics automatically, e.g calculating IPC by diving total instructions by total cycles, calculating L1 data cache misses per thousand instructions by diving total L1 data cache misses by the number of thousand instructions executed.
+%This is because the raw data is meaningless for most of the time. Such as the total number of L1 instruction cache misses does not give much information for different workloads have different running time.
+%The meaningful metric should be L1 instruction cache missed per thousand instruct. %So the raw data should be
+%because different workloads have different running time and most of raw data are skewed by running time.
+%So the raw data should be normalized by time or cycles according to the definition of metrics, such as cache misses per thousand instructions, context switches per second.
+
+%After that, the performance data analyzer will produce two kinds of outputs --- workload subset and performance data visualization.%, whose numbers are labeled in figure \ref{tool}.

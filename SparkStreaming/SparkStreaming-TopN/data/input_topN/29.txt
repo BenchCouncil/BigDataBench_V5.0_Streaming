@@ -1,0 +1,3 @@
+
+%BigDataBench is an open-source comprehensive big data benchmark suites. There are 77 workloads in the latest version of BigDataBench --BigDataBench 3.0. Considering the diversity and representativeness, the workloads in BigDataBench cover different types of applications: cloud OLTP, OLAP and interactive analytics, and offline analytics. Moreover, each operation or algorithm has various implementations using different software stacks. In addition, these workloads cover both basic operations and state-of-art algorithms in three popular Internet scenarios: search engine, social network, and e-commerce.
+

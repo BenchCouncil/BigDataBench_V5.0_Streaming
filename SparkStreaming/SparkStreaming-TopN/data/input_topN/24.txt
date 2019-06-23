@@ -1,0 +1,22 @@
+%The rapid development of distributed systems has led to the proliferation of massive distributed applications, covering a wide range of domains, from search engine, social networks to e-commerce.
+A comprehensive benchmark suite should cover a broad spectrum of representative
+applications of different types, as well as state-of-the-art software stacks.
+%On the other hand, most of the emerging workloads are executed in a distributed manner.
+%The distributed workloads, no matter traditional HPC workloads or stat-of-art data center workloads, can run on large-scale clusters, whose scales range from several nodes to thousands of nodes.
+%The large scale of clusters together with
+However, the broad spectrum of representative applications is multiplied by different software stack implementations, which bring cognitive difficulty of workload characterization and benchmarking costs.
+%for the architecture community,  that usually evaluates new design using simulators.
+%makes it expensive to organize experiments and get valuable insights from experiments, especially for architectural researches that usually evaluate new design using simulators.
+
+In order to reduce complexity and costs of workload characterization analysis, we develop a comprehensive workload characterization tool, which can subset the whole workload set through removing redundant ones. In addition, this tool also can collect, analyze, and visualize a large number of performance metrics.
+%ranging from micro-architecture level metrics e.g. the number of cache miss per thousand instructions, to operating system level metrics e.g. the number of context switches per second.
+%In order to get deeper insight, in our tool we also integrate some important statistical methods in workloads characterization inspired by previous research ~\cite{eeckhout2003quantifying,eeckhout2002workload,phiansalkar2007analysisab,phansalkar2007subsetting}.
+%We will open source our tool, so that other researchers can use it to get valuable information in an acceptable time.
+
+
+Figure~\ref{tool} shows the architecture of the workload characterization tool. The tool mainly consists of two parts, a profiler and a performance data analyzer. (1)The \emph{profiler} is deployed on each node in the cluster, which runs the workloads we want to characterize. It collects performance data specified by users when the workload begins to run, and stores the profile data into local disk. After a workload is finished, the profiled data will transfer to the performance data analyzer through network. Specifically, We use Python scripts to drive Perf, which can access hardware Performance Counter Unit (PMU) and the \emph{proc} file system in Linux for getting Operating System (OS) level information. We also provide an extended interface which users can use to collect other data. (2)The \emph{performance data analyzer} is deployed on an exclusive node that does not run other workloads. The performance data analyzer will collect the performance data from all profilers and then process those data with different modules. First, the collector module in performance data analyzer will collect all the data from each profiler. Then the collector will store those raw data into the database. Our tool will normalize those raw data according to different definitions of metrics and automatically calculates the metrics. After that, the performance data analyzer will produce two kinds of outputs: workload subset and performance data visualization.
+
+\begin{figure}[tbp]
+\centering
+%\epsfig{file=tool_arch.eps,scale=0.6}
+\includegraphics[scale=0.6]{pic/tool_arch.eps}

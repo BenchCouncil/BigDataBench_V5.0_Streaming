@@ -1,0 +1,6 @@
+These workloads cover both basic operations and state-of-art algorithms, and each operation/algorithm has multiple implementations built upon mainstream software stacks (Hadoop and Spark).
+In short, BigDataBench aims at providing comprehensive workloads in order to meet the needs of benchmark users from different research fields, for example, architecture field, system field and networking field.
+%Since the first release in June 2013, more than 20 research groups and industry partners worldwide have published papers using BigDataBench.
+In addition, there are seven data sets for big data workloads, and these data sets have different types and sources. Furthermore, the original data sets can be scaled by the BDGS provided by BigDataBench. The more details can be obtained from [1].
+
+

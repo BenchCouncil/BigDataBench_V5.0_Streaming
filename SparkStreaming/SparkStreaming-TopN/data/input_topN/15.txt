@@ -1,0 +1,3 @@
+%\subsubsection{Performance Data Visualization}
+%After all workloads are finished, if the user only want to compare the performance data collected by profilers, then the figure plotter can be used to plot different kinds of graphes, such as histogram. The histogram facilitates users to compare the performance metrics among different workloads.
+

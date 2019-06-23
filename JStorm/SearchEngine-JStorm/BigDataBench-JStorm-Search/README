@@ -1,0 +1,18 @@
+
+1. Introduction
+BigDataBench-JStorm-Search: real-time search based on lucene.
+
+2.Directory
+ (1)./src: source code
+ (2)./resource: configuration File
+ (3)./lib: dependent jar packages.
+    ./lib/jstorm: the scope is setted as "provided" when building.
+    ./lib/lucene: the scope is setted as "compile" when building.
+    ./lib/redis: the scope is setted as "compile" when building.
+ (4)./out/artifacts: executable jar package.
+ 
+3.script
+  submit.sh: Submit JStorm Topology.
+  kill.sh: Kill JStorm Topology.
+
+~                                                                  

@@ -1,0 +1,5 @@
+\begin{figure}[tbp]
+\centering
+%\epsfig{file=tool_arch.eps,scale=0.6}
+\includegraphics[scale=0.6]{pic/tool_arch.eps}
+\caption{The architecture of the workload characterization tool}
